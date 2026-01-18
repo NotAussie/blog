@@ -1,6 +1,6 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
-import { Globe } from "@lucide/astro";
+import { Globe, BadgeCheck } from "@lucide/astro";
 import { Github, Bluesky, Mastodon } from "simple-icons-astro";
 import Layout from "../../layouts/Layout.astro";
 import Gravatar from "../../components/Gravatar.astro";
@@ -56,7 +56,12 @@ function getMastodonInstance() {
       </div>
 
       <div class="flex-1">
-        <h1 class="mb-2 text-4xl font-bold">{author.data.display_name}</h1>
+        <h1 class="mb-2 flex items-center gap-2 text-4xl font-bold">
+          {author.data.display_name}
+          {author.data.maintainer && (
+            <BadgeCheck class="inline h-8 w-8 text-primary" />
+          )}
+        </h1>
         {
           author.data.pronouns && (
             <p class="mb-3 text-lg">({author.data.pronouns})</p>

@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import { BadgeCheck } from "@lucide/astro";
 import Layout from "../../layouts/Layout.astro";
 import Gravatar from "../../components/Gravatar.astro";
 import PageSEO from "../../components/seo/PageSEO.astro";
@@ -29,8 +30,11 @@ const authors = await getCollection("author");
                     class="h-16 w-16 rounded-full"
                   />
                   <div class="flex-1">
-                    <h2 class="card-title text-lg">
+                    <h2 class="card-title flex items-center gap-2 text-lg">
                       {author.data.display_name}
+                      {author.data.maintainer && (
+                        <BadgeCheck class="inline h-5 w-5 text-primary" />
+                      )}
                     </h2>
                     <p class="text-base-content/70 line-clamp-2 text-sm">
                       {author.data.description}
